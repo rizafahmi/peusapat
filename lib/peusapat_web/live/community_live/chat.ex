@@ -56,4 +56,10 @@ defmodule PeusapatWeb.CommunityLive.Chat do
   def get_readable_date(date) do
     Calendar.strftime(date, "%d %b %Y")
   end
+
+  def render_md(text) do
+    text
+    |> Earmark.as_html!()
+    |> raw()
+  end
 end
