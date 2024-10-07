@@ -10,6 +10,7 @@ defmodule Peusapat.Users.User do
     field :current_password, :string, virtual: true, redact: true
     field :confirmed_at, :utc_datetime
     field :avatar, :string
+    has_many :communities, Peusapat.Communities.Community
 
     timestamps(type: :utc_datetime)
   end

@@ -68,6 +68,15 @@ defmodule PeusapatWeb.Router do
       on_mount: [{PeusapatWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+
+      scope "/admin", as: :admin do
+        live "/communities", CommunityLive.Index, :index
+        live "/communities/new", CommunityLive.Index, :new
+        live "/communities/:id/edit", CommunityLive.Index, :edit
+
+        live "/communities/:id", CommunityLive.Show, :show
+        live "/communities/:id/show/edit", CommunityLive.Show, :edit
+      end
     end
   end
 
