@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :peusapat, Peusapat.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "riza",
+  password: "",
   hostname: "localhost",
   database: "peusapat_dev",
   stacktrace: true,
