@@ -1,32 +1,47 @@
 <header>
-    <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
-        <div class="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto">
-            <.link href={~p"/"} class="flex items-center">
-                <span class="h-6 mr-3 sm:h-9 content-center" aria-label="Peusapat logo">🚰</span>
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Peusapat</span>
-            </.link>
-            <div class="flex items-center lg:order-2">
-              <%= if @current_user do %>
-                <span class="text-[0.8125rem] leading-6 text-zinc-900">
-                  <%= @current_user.email %>
-                </span>
-                <.link href={~p"/users/settings"}
-                            class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Settings</.link>
-                            <.link
-                              href={~p"/users/log_out"}
-                              method="delete"
-                              class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-                            >
-                              Log out
-                            </.link>
-              <% else %>
-                <.link href={~p"/users/log_in"}
-                            class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Sign in</.link>
-                <a href={~p"/users/register"} class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">Sign up</a>
-                <% end %>
-            </div>
-        </div>
-    </nav>
+  <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+    <div class="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto">
+      <.link href={~p"/"} class="flex items-center">
+        <span class="h-6 mr-3 sm:h-9 content-center" aria-label="Peusapat logo">🚰</span>
+        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+          Peusapat
+        </span>
+      </.link>
+      <div class="flex items-center lg:order-2">
+        <%= if @current_user do %>
+          <span class="text-[0.8125rem] leading-6 text-zinc-900">
+            <%= @current_user.email %>
+          </span>
+          <.link
+            href={~p"/users/settings"}
+            class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+          >
+            Settings
+          </.link>
+          <.link
+            href={~p"/users/log_out"}
+            method="delete"
+            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+          >
+            Log out
+          </.link>
+        <% else %>
+          <.link
+            href={~p"/users/log_in"}
+            class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+          >
+            Sign in
+          </.link>
+          <a
+            href={~p"/users/register"}
+            class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800"
+          >
+            Sign up
+          </a>
+        <% end %>
+      </div>
+    </div>
+  </nav>
 </header>
 <main class="">
   <div class="">
@@ -35,9 +50,10 @@
   </div>
 </main>
 <footer class="p-4 bg-white sm:p-6 dark:bg-gray-800">
-    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-    <div class="sm:flex sm:items-center sm:justify-between">
-        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">Built with ❤️ in TangSel.
-        </span>
-    </div>
+  <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+  <div class="sm:flex sm:items-center sm:justify-between">
+    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+      Built with ❤️ in TangSel. 
+    </span>
+  </div>
 </footer>
