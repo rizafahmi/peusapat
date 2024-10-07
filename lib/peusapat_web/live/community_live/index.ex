@@ -1,12 +1,16 @@
 defmodule PeusapatWeb.CommunityLive.Index do
   use PeusapatWeb, :live_view
 
+  alias Peusapat.Command
   alias Peusapat.Communities
   alias Peusapat.Communities.Community
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :communities, Communities.list_communities())}
+    current_user = socket.assigns.current_user
+    socket = socket |> assign(:current_user, current_user)
+
+    {:ok, stream(socket, :communities, Command.list_communities_by_user(current_user.id))}
   end
 
   @impl true

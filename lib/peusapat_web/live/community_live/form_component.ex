@@ -48,7 +48,11 @@ defmodule PeusapatWeb.CommunityLive.FormComponent do
   end
 
   def handle_event("save", %{"community" => community_params}, socket) do
-    save_community(socket, socket.assigns.action, community_params)
+    params =
+      community_params
+      |> Map.put("user_id", socket.assigns.current_user.id)
+
+    save_community(socket, socket.assigns.action, params)
   end
 
   defp save_community(socket, :edit, community_params) do

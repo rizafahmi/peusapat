@@ -17,7 +17,7 @@ defmodule Peusapat.Communities.Community do
   @doc false
   def changeset(community, attrs) do
     community
-    |> cast(attrs, [:name, :logo, :description, :slug])
-    |> validate_required([:name, :slug])
+    |> cast(attrs, [:name, :logo, :description, :slug, :user_id])
+    |> validate_required([:name, :slug, :user_id])
   end
 end
