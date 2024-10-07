@@ -76,6 +76,14 @@ defmodule PeusapatWeb.Router do
 
         live "/communities/:id", CommunityLive.Show, :show
         live "/communities/:id/show/edit", CommunityLive.Show, :edit
+
+        # Temporary
+        live "/topics", TopicLive.Index, :index
+        live "/topics/new", TopicLive.Index, :new
+        live "/topics/:id/edit", TopicLive.Index, :edit
+
+        live "/topics/:id", TopicLive.Show, :show
+        live "/topics/:id/show/edit", TopicLive.Show, :edit
       end
     end
   end
