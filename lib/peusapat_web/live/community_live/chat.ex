@@ -7,7 +7,7 @@ defmodule PeusapatWeb.CommunityLive.Chat do
   @impl true
   def mount(%{"community_slug" => slug}, _session, socket) do
     topics = Peusapat.Command.list_topics_by_community(slug)
-    dbg(topics)
+    community = Peusapat.Command.get_community_by_slug(slug)
     changeset = Topic.changeset(%Topic{}, %{})
 
     socket =
@@ -15,6 +15,7 @@ defmodule PeusapatWeb.CommunityLive.Chat do
       |> assign(form: to_form(changeset))
       |> assign(slug: slug)
       |> assign(topics: topics)
+      |> assign(community: community)
 
     {:ok, socket}
   end
