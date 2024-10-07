@@ -23,4 +23,41 @@ defmodule Peusapat.Command do
 
     Repo.all(query)
   end
+
+  @doc """
+  Return the community by slug.
+
+  ## Examples
+
+      iex> get_community_by_slug("test")
+      %Community{}
+
+  """
+  def get_community_by_slug(slug) do
+    query =
+      from c in Peusapat.Communities.Community,
+        where: c.slug == ^slug
+
+    Repo.one(query)
+  end
+
+  @doc """
+  Return the list of topics by community_slug.
+
+  ## Examples
+
+      iex> list_topics_by_community("test")
+      [%Topic{}, ...]
+  """
+  def list_topics_by_community(community_slug) do
+    community = get_community_by_slug(community_slug)
+
+    query =
+      from t in Peusapat.Topics.Topic,
+        where: t.community_id == ^community.id,
+        order_by: [desc: t.inserted_at],
+        preload: [:user]
+
+    Repo.all(query)
+  end
 end
