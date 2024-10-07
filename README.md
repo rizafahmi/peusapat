@@ -30,21 +30,26 @@ It's not youtube community, it's multi directional forum discussion.
 
 - Webmentions?
 - Notification feature
+- [x] Show date and time of post
+- [ ] Show community description
+- [ ] Reply to post
+- [ ] Like post
+- [ ] Pin message
 
 ### Group Owner
 
-- As a group owner, I want to be able to sign up, sign in and sign out
-- As a group owner, I want to be able to create a new group
-- As a group owner, I want to be able to edit group
-- As a group owner, I want to be able to delete group
-- As a group owner, I want to be able to list of owner's group
+- [x] As a group owner, I want to be able to sign up, sign in and sign out
+- [x] As a group owner, I want to be able to create a new group
+- [x] As a group owner, I want to be able to edit group
+- [x] As a group owner, I want to be able to delete group
+- [ ] As a group owner, I want to be able to list of owner's group
 
 ### Audience
 
-- As an audience, I want to be able to sign up, sign in and sign out
-- As an udience, I want to able to join group chat from url or qr code
-- As an audience, I want to able to send chat message to the group chat i've joined
-- As an audience, I want to able to see chat messages from other audience
+- [x] As an audience, I want to be able to sign up, sign in and sign out
+- [x] As an udience, I want to able to join group chat from url or qr code
+- [x] As an audience, I want to able to send chat message to the group chat i've joined
+- [ ] As an audience, I want to able to see chat messages from other audience in realtime fashion
 
 ## Non-functional Requirement
 

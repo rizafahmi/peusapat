@@ -54,7 +54,7 @@ defmodule PeusapatWeb.CommunityLive.Chat do
   end
 
   def get_readable_date(date) do
-    Calendar.strftime(date, "%d %b %Y")
+    Calendar.strftime(date, "%d %b %Y, %H:%M")
   end
 
   def render_md(text) do
