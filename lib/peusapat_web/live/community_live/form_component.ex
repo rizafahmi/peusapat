@@ -21,7 +21,13 @@ defmodule PeusapatWeb.CommunityLive.FormComponent do
       >
         <.input field={@form[:name]} type="text" label="Name" />
         <.input field={@form[:logo]} type="text" label="Logo" />
-        <.input field={@form[:description]} type="text" label="Description" />
+        <.input
+          field={@form[:description]}
+          type="textarea"
+          label="Description"
+          placeholder="A short description of the community. Markdown is supported."
+          class="border-zinc-300 focus:border-zinc-400"
+        />
         <.input field={@form[:slug]} type="text" label="Slug" />
         <:actions>
           <.button phx-disable-with="Saving...">Save Community</.button>
