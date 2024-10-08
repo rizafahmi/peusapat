@@ -8,7 +8,7 @@
         </span>
       </.link>
       <div class="flex items-center lg:order-2">
-        <%= if @current_user do %>
+        <%= if Map.get(assigns, :current_user) != nil do %>
           <span class="text-[0.8125rem] leading-6 text-zinc-900">
             <%= @current_user.email %>
           </span>

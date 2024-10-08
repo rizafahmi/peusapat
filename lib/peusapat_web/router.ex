@@ -69,8 +69,6 @@ defmodule PeusapatWeb.Router do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
 
-      live "/:community_slug", CommunityLive.Chat
-
       scope "/admin", as: :admin do
         live "/communities", CommunityLive.Index, :index
         live "/communities/new", CommunityLive.Index, :new
@@ -99,6 +97,7 @@ defmodule PeusapatWeb.Router do
       on_mount: [{PeusapatWeb.UserAuth, :mount_current_user}] do
       live "/users/confirm/:token", UserConfirmationLive, :edit
       live "/users/confirm", UserConfirmationInstructionsLive, :new
+      live "/:community_slug", CommunityLive.Chat
     end
   end
 end

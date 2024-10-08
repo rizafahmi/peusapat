@@ -28,14 +28,6 @@ It's not youtube community, it's multi directional forum discussion.
 
 ## Functional Requirement
 
-- Webmentions?
-- Notification feature
-- [x] Show date and time of post
-- [ ] Show community description
-- [ ] Reply to post
-- [ ] Like post
-- [ ] Pin message
-
 ### Group Owner
 
 - [x] As a group owner, I want to be able to sign up, sign in and sign out
@@ -50,6 +42,16 @@ It's not youtube community, it's multi directional forum discussion.
 - [x] As an udience, I want to able to join group chat from url or qr code
 - [x] As an audience, I want to able to send chat message to the group chat i've joined
 - [ ] As an audience, I want to able to see chat messages from other audience in realtime fashion
+- [x] Show date and time of post
+- [x] Show community description
+- [x] As an audience, I can peek the post before I decide to join conversation
+- [ ] Reply to post
+  - Using modal
+  - Or inline input text?
+- Like post
+- Pin message
+- Webmentions?
+- Notification feature
 
 ## Non-functional Requirement
 
