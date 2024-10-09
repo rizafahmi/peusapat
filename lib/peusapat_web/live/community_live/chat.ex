@@ -47,6 +47,45 @@ defmodule PeusapatWeb.CommunityLive.Chat do
     end
   end
 
+  @impl true
+  def handle_params(%{"community_slug" => slug}, _url, socket) do
+    # field :parent_id, :binary_id
+    # belongs_to :user, Peusapat.Users.User
+    # belongs_to :community, Peusapat.Communities.Community
+    community_id = Peusapat.Command.get_community_by_slug(slug).id
+    user_id = socket.assigns.current_user.id
+
+    socket =
+      socket
+      |> assign(
+        reply_form:
+          to_form(Topic.changeset(%Topic{}, %{community_id: community_id, user_id: user_id}))
+      )
+
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("save", %{"topic" => topic_params}, socket) do
+    dbg(socket.assigns.reply_form.source.changes)
+
+    params =
+      topic_params
+      |> Map.put("user_id", socket.assigns.current_user.id)
+      |> Map.put("community_id", socket.assigns.reply_form.source.changes.community_id)
+
+    case Topics.create_topic(params) do
+      {:ok, _topic} ->
+        {:noreply,
+         socket
+         |> put_flash(:info, "Topic created successfully")
+         |> push_patch(to: socket.assigns.patch)}
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        {:noreply, assign(socket, reply_form: to_form(changeset))}
+    end
+  end
+
   def remove_email(email) do
     email
     |> String.split("@")

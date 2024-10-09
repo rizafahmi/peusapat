@@ -45,9 +45,11 @@ It's not youtube community, it's multi directional forum discussion.
 - [x] Show date and time of post
 - [x] Show community description
 - [x] As an audience, I can peek the post before I decide to join conversation
-- [ ] Reply to post
-  - Using modal
-  - Or inline input text?
+- [x] Reply to post
+  - [x] Using modal
+  - ~~Or inline input text?~~
+- [ ] Query post without parent id
+- [ ] Query post with parent id for each post
 - Like post
 - Pin message
 - Webmentions?

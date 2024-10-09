@@ -122,6 +122,7 @@
           <button
             type="button"
             class="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 font-medium"
+            phx-click={show_modal("reply-modal-#{topic.id}")}
           >
             <svg
               class="mr-1.5 w-3.5 h-3.5"
@@ -142,6 +143,50 @@
           </button>
         </div>
       </article>
+      <.modal
+        id={"reply-modal-#{topic.id}"}
+        show={false}
+        on_cancel={JS.patch(~p"/#{@community.slug}")}
+      >
+        <%!-- <.live_component
+          module={PeusapatWeb.CommunityLive.FormComponent}
+          id={@community.id}
+          title={"Reply"}
+          action={@live_action}
+          community={@community}
+          patch={~p"/{@community.slug}/#{@topic.id}"}
+          current_user={@current_user}
+        /> --%>
+        <!-- Modal header -->
+        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            Balas pesan
+          </h3>
+        </div>
+        <!-- Modal body -->
+        <div class="p-4 md:p-5">
+          <blockquote class="p-4 my-4 border-s-4 border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800">
+            <p class="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white">
+              <%= render_md(topic.post) %>
+            </p>
+          </blockquote>
+          <.simple_form
+            for={@reply_form}
+            phx-submit="save"
+            class="space-y-4"
+            action={@live_action}
+          >
+            <input type="text" name="topic[parent_id]" value={topic.id} />
+            <.input
+              field={@reply_form[:post]}
+              type="textarea"
+              label="Post"
+              id={"#{topic.id}-post"}
+            />
+            <.button phx-disable-with="Sending...">Send</.button>
+          </.simple_form>
+        </div>
+      </.modal>
     <% end %>
     <!--<article class="p-6 mb-3 ml-6 lg:ml-12 text-base bg-white rounded-lg dark:bg-gray-900">
       <footer class="flex justify-between items-center mb-2">

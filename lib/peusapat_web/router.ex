@@ -85,6 +85,8 @@ defmodule PeusapatWeb.Router do
         live "/topics/:id", TopicLive.Show, :show
         live "/topics/:id/show/edit", TopicLive.Show, :edit
       end
+
+      live "/:community_slug/:topic_id", CommunityLive.Chat
     end
   end
 
