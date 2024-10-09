@@ -54,7 +54,7 @@ defmodule Peusapat.Command do
 
     query =
       from t in Peusapat.Topics.Topic,
-        where: t.community_id == ^community.id,
+        where: t.community_id == ^community.id and is_nil(t.parent_id),
         order_by: [desc: t.inserted_at],
         preload: [:user]
 

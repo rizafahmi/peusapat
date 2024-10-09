@@ -48,7 +48,7 @@ It's not youtube community, it's multi directional forum discussion.
 - [x] Reply to post
   - [x] Using modal
   - ~~Or inline input text?~~
-- [ ] Query post without parent id
+- [x] Query post without parent id
 - [ ] Query post with parent id for each post
 - Like post
 - Pin message
