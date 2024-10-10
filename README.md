@@ -50,6 +50,7 @@ It's not youtube community, it's multi directional forum discussion.
   - ~~Or inline input text?~~
 - [x] Query post without parent id
 - [ ] Query post with parent id for each post
+- [ ] Add replies module
 - Like post
 - Pin message
 - Webmentions?
