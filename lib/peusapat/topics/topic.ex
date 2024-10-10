@@ -9,6 +9,7 @@ defmodule Peusapat.Topics.Topic do
     field :parent_id, :binary_id
     belongs_to :user, Peusapat.Users.User
     belongs_to :community, Peusapat.Communities.Community
+    has_many :reply, Peusapat.Topics.Reply
 
     timestamps(type: :utc_datetime)
   end
