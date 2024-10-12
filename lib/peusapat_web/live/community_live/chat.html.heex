@@ -87,17 +87,17 @@
                   </path>
                 </g>
               </svg>
-              <%= remove_email(topic.user.email) %>
+              <%= PeusapatWeb.Live.Helpers.remove_email(topic.user.email) %>
             </p>
             <p class="text-sm text-gray-600 dark:text-gray-400">
               <time pubdate datetime={topic.inserted_at} title={topic.inserted_at}>
-                <%= get_readable_date(topic.inserted_at) %>
+                <%= PeusapatWeb.Live.Helpers.get_readable_date(topic.inserted_at) %>
               </time>
             </p>
           </div>
         </footer>
         <article class="format lg:format-lg">
-          <%= render_md(topic.post) %>
+          <%= PeusapatWeb.Live.Helpers.render_md(topic.post) |> raw() %>
         </article>
         <div class="flex items-center mt-4 space-x-4">
           <!--button
@@ -119,10 +119,10 @@
             </svg>
             Like
           </button -->
-          <button
+          <.link
             type="button"
             class="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 font-medium"
-            phx-click={show_modal("reply-modal-#{topic.id}")}
+            navigate={~p"/#{@community.slug}/topics/#{topic.id}"}
           >
             <svg
               class="mr-1.5 w-3.5 h-3.5"
@@ -140,7 +140,7 @@
               />
             </svg>
             Reply
-          </button>
+          </.link>
         </div>
       </article>
       <!-- REPLIES -->
@@ -265,7 +265,7 @@
         <div class="p-4 md:p-5">
           <blockquote class="p-4 my-4 border-s-4 border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800">
             <p class="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white">
-              <%= render_md(topic.post) %>
+              <%= PeusapatWeb.Live.Helpers.render_md(topic.post) |> raw() %>
             </p>
           </blockquote>
           <.simple_form
