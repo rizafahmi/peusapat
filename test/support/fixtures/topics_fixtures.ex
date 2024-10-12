@@ -29,7 +29,8 @@ defmodule Peusapat.TopicsFixtures do
   end
 
   def topic_preload(topic) do
-    query = from t in Peusapat.Topics.Topic, where: t.id == ^topic.id, preload: [:user]
+    query =
+      from t in Peusapat.Topics.Topic, where: t.id == ^topic.id, preload: [:user, :community]
 
     Repo.one(query)
   end
