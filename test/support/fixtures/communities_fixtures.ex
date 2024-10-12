@@ -17,7 +17,7 @@ defmodule Peusapat.CommunitiesFixtures do
         description: "some description",
         logo: "some logo",
         name: "some name",
-        slug: "some slug"
+        slug: "some-name"
       })
       |> Peusapat.Communities.create_community()
 
