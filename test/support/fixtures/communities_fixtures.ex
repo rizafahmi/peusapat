@@ -8,8 +8,11 @@ defmodule Peusapat.CommunitiesFixtures do
   Generate a community.
   """
   def community_fixture(attrs \\ %{}) do
+    user = Peusapat.UsersFixtures.user_fixture()
+    params = Map.put(attrs, :user_id, user.id)
+
     {:ok, community} =
-      attrs
+      params
       |> Enum.into(%{
         description: "some description",
         logo: "some logo",

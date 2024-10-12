@@ -1,4 +1,4 @@
-defmodule Peusapat.Command do
+defmodule Peusapat.Commands do
   @moduledoc """
   Command module for additional functions for every context
   """
@@ -59,5 +59,11 @@ defmodule Peusapat.Command do
         preload: [:user]
 
     Repo.all(query)
+  end
+
+  def get_topic_preload!(id) do
+    query = from t in Peusapat.Topics.Topic, where: t.id == ^id, preload: [:user]
+
+    Repo.one(query)
   end
 end
