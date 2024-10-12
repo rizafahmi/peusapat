@@ -6,8 +6,8 @@ defmodule PeusapatWeb.CommunityLive.Chat do
 
   @impl true
   def mount(%{"community_slug" => slug}, _session, socket) do
-    topics = Peusapat.Command.list_topics_by_community(slug)
-    community = Peusapat.Command.get_community_by_slug(slug)
+    topics = Peusapat.Commands.list_topics_by_community(slug)
+    community = Peusapat.Commands.get_community_by_slug(slug)
     changeset = Topic.changeset(%Topic{}, %{})
 
     socket =
@@ -21,8 +21,25 @@ defmodule PeusapatWeb.CommunityLive.Chat do
   end
 
   @impl true
+  def handle_params(%{"community_slug" => slug}, _url, socket) do
+    # field :parent_id, :binary_id
+    # belongs_to :user, Peusapat.Users.User
+    # belongs_to :community, Peusapat.Communities.Community
+    community_id = Peusapat.Commands.get_community_by_slug(slug).id
+    user = socket.assigns.current_user || nil
+
+    socket =
+      socket
+      |> assign(
+        reply_form: to_form(Topic.changeset(%Topic{}, %{community_id: community_id, user: user}))
+      )
+
+    {:noreply, socket}
+  end
+
+  @impl true
   def handle_event("submit", %{"topic" => topic_params}, socket) do
-    community = Peusapat.Command.get_community_by_slug(socket.assigns.slug)
+    community = Peusapat.Commands.get_community_by_slug(socket.assigns.slug)
 
     params =
       topic_params
@@ -48,23 +65,6 @@ defmodule PeusapatWeb.CommunityLive.Chat do
   end
 
   @impl true
-  def handle_params(%{"community_slug" => slug}, _url, socket) do
-    # field :parent_id, :binary_id
-    # belongs_to :user, Peusapat.Users.User
-    # belongs_to :community, Peusapat.Communities.Community
-    community_id = Peusapat.Command.get_community_by_slug(slug).id
-    user = socket.assigns.current_user || nil
-
-    socket =
-      socket
-      |> assign(
-        reply_form: to_form(Topic.changeset(%Topic{}, %{community_id: community_id, user: user}))
-      )
-
-    {:noreply, socket}
-  end
-
-  @impl true
   def handle_event("save", %{"topic" => topic_params}, socket) do
     dbg(socket.assigns.reply_form.source.changes)
 
@@ -83,21 +83,5 @@ defmodule PeusapatWeb.CommunityLive.Chat do
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, reply_form: to_form(changeset))}
     end
-  end
-
-  def remove_email(email) do
-    email
-    |> String.split("@")
-    |> Enum.at(0)
-  end
-
-  def get_readable_date(date) do
-    Calendar.strftime(date, "%d %b %Y, %H:%M")
-  end
-
-  def render_md(text) do
-    text
-    |> Earmark.as_html!()
-    |> raw()
   end
 end

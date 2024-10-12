@@ -1,7 +1,7 @@
 defmodule PeusapatWeb.CommunityLive.Index do
   use PeusapatWeb, :live_view
 
-  alias Peusapat.Command
+  alias Peusapat.Commands
   alias Peusapat.Communities
   alias Peusapat.Communities.Community
 
@@ -10,7 +10,7 @@ defmodule PeusapatWeb.CommunityLive.Index do
     current_user = socket.assigns.current_user
     socket = socket |> assign(:current_user, current_user)
 
-    {:ok, stream(socket, :communities, Command.list_communities_by_user(current_user.id))}
+    {:ok, stream(socket, :communities, Commands.list_communities_by_user(current_user.id))}
   end
 
   @impl true
