@@ -13,7 +13,7 @@ let
 	    glibcLocales
 	    nodejs_22
 	    yarn
-	    postgresql
+	    postgresql_15
 	  ];
 
 	inputs = basePackages
@@ -40,5 +40,3 @@ pkgs.mkShellNoCC {
   buildInputs = inputs;
   shelHook = hooks;
 }
-
-
