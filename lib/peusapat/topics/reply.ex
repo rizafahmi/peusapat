@@ -6,7 +6,7 @@ defmodule Peusapat.Topics.Reply do
   @foreign_key_type :binary_id
   schema "replies" do
     field :text, :string
-    belongs_to :topic, Peusapat.Topics.Topic
+    belongs_to :parent, Peusapat.Topics.Topic
     belongs_to :user, Peusapat.Accounts.User
 
     timestamps(type: :utc_datetime)
@@ -15,7 +15,7 @@ defmodule Peusapat.Topics.Reply do
   @doc false
   def changeset(reply, attrs) do
     reply
-    |> cast(attrs, [:text, :topic_id, :user_id])
-    |> validate_required([:text, :topic_id, :user_id])
+    |> cast(attrs, [:text, :parent_id, :user_id])
+    |> validate_required([:text, :parent_id, :user_id])
   end
 end
