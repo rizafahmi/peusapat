@@ -7,7 +7,7 @@ defmodule Peusapat.Topics.Reply do
   schema "replies" do
     field :text, :string
     belongs_to :parent, Peusapat.Topics.Topic
-    belongs_to :user, Peusapat.Accounts.User
+    belongs_to :user, Peusapat.Users.User
 
     timestamps(type: :utc_datetime)
   end
