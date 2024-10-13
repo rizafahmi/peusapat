@@ -7,6 +7,7 @@ defmodule Peusapat.Topics.Reply do
   schema "replies" do
     field :text, :string
     belongs_to :topic, Peusapat.Topics.Topic
+    belongs_to :user, Peusapat.Accounts.User
 
     timestamps(type: :utc_datetime)
   end
@@ -14,7 +15,7 @@ defmodule Peusapat.Topics.Reply do
   @doc false
   def changeset(reply, attrs) do
     reply
-    |> cast(attrs, [:text, :topic_id])
-    |> validate_required([:text, :topic_id])
+    |> cast(attrs, [:text, :topic_id, :user_id])
+    |> validate_required([:text, :topic_id, :user_id])
   end
 end
