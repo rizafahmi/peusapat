@@ -66,8 +66,6 @@ defmodule PeusapatWeb.CommunityLive.Chat do
 
   @impl true
   def handle_event("save", %{"topic" => topic_params}, socket) do
-    dbg(socket.assigns.reply_form.source.changes)
-
     params =
       topic_params
       |> Map.put("user_id", socket.assigns.current_user.id)

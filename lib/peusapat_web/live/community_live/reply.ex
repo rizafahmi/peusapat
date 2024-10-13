@@ -2,15 +2,18 @@ defmodule PeusapatWeb.CommunityLive.Reply do
   use PeusapatWeb, :live_view
 
   alias Peusapat.Topics.Reply
+  import PeusapatWeb.Live.Helpers
 
   @impl true
   def mount(%{"community_slug" => community_slug, "topic_id" => topic_id}, _session, socket) do
     user = socket.assigns.current_user
     topic = Peusapat.Commands.get_topic_preload!(topic_id)
+    replies = Peusapat.Commands.list_replies(topic_id)
 
     socket =
       socket
       |> assign(topic: topic)
+      |> assign(replies: replies)
       |> assign(user: user)
       |> assign(community_slug: community_slug)
       |> assign(reply_form: to_form(Reply.changeset(%Reply{}, %{user: user})))
@@ -26,11 +29,13 @@ defmodule PeusapatWeb.CommunityLive.Reply do
       |> Map.put("parent_id", socket.assigns.topic.id)
 
     case Peusapat.Commands.create_reply(params) do
-      {:ok, reply} ->
+      {:ok, _reply} ->
         socket =
           socket
           |> put_flash(:info, "Reply created successfully")
-          |> push_navigate(to: ~p"/#{socket.assigns.community_slug}")
+          |> push_navigate(
+            to: ~p"/#{socket.assigns.community_slug}/topics/#{socket.assigns.topic.id}"
+          )
 
         {:noreply, socket}
 
@@ -112,6 +117,84 @@ defmodule PeusapatWeb.CommunityLive.Reply do
           <%= PeusapatWeb.Live.Helpers.render_md(@topic.post) |> raw() %>
         </article>
       </article>
+      <div>
+        <%= for reply <- @replies do %>
+          <!-- REPLIES -->
+          <article class="p-6 mb-3 ml-6 lg:ml-12 text-base bg-white rounded-lg dark:bg-gray-900">
+            <footer class="flex justify-between items-center mb-2">
+              <div class="flex items-center">
+                <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
+                  <img
+                    class="mr-2 w-6 h-6 rounded-full"
+                    src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                    alt="{remove_email(reply.user.email)}"
+                  /><%= remove_email(reply.user.email) %>
+                </p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  <time pubdate datetime="{reply.inserted_at}" title="{reply.inserted_at}">
+                    <%= get_readable_date(reply.inserted_at) %>
+                  </time>
+                </p>
+              </div>
+              <!-- Dropdown menu
+              <button
+                id="dropdownComment2Button"
+                data-dropdown-toggle="dropdownComment2"
+                class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-40 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                type="button"
+              >
+                <svg
+                  class="w-4 h-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 16 3"
+                >
+                  <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                </svg>
+                <span class="sr-only">Comment settings</span>
+              </button>
+
+              <div
+                id="dropdownComment2"
+                class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+              >
+                <ul
+                  class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                  aria-labelledby="dropdownMenuIconHorizontalButton"
+                >
+                  <li>
+                    <a
+                      href="#"
+                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Edit
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Remove
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Report
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              -->
+            </footer>
+            <p class="text-gray-500 dark:text-gray-400"><%= reply.text %></p>
+          </article>
+        <% end %>
+      </div>
 
       <.simple_form for={@reply_form} id="reply-form" phx-submit="submit">
         <.input
@@ -122,8 +205,13 @@ defmodule PeusapatWeb.CommunityLive.Reply do
           placeholder="Reply..."
         />
         <.button>Reply</.button>
+        <.link
+          navigate={~p"/#{@community_slug}"}
+          class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+        >
+          Back
+        </.link>
       </.simple_form>
-      <.link navigate={~p"/#{@community_slug}"}>Back</.link>
     </div>
     """
   end

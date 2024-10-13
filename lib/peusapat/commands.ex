@@ -84,4 +84,24 @@ defmodule Peusapat.Commands do
     |> Reply.changeset(attrs)
     |> Repo.insert()
   end
+
+  @doc """
+  Returns the list of replies.
+
+  ## Examples
+
+      iex> list_replies(123)
+      [%Reply{}, ...]
+
+  """
+  def list_replies(parent_id) do
+    query =
+      from r in Reply,
+        where: r.parent_id == ^parent_id,
+        order_by: [desc: r.inserted_at],
+        preload: [:user]
+
+    replies = Repo.all(query)
+    replies
+  end
 end

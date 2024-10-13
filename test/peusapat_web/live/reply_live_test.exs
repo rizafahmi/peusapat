@@ -27,6 +27,7 @@ defmodule PeusapatWeb.ReplyLiveTest do
       assert html =~ topic.post
 
       assert live |> form("#reply-form", reply: @create_attrs) |> render_submit()
+      assert_redirect(live, ~p"/#{topic.community.slug}/topics/#{topic.id}")
     end
   end
 end
