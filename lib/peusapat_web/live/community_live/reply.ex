@@ -20,8 +20,28 @@ defmodule PeusapatWeb.CommunityLive.Reply do
 
   @impl true
   def handle_event("submit", %{"reply" => reply_params}, socket) do
-    dbg(reply_params)
-    {:noreply, socket}
+    params =
+      reply_params
+      |> Map.put("user_id", socket.assigns.current_user.id)
+      |> Map.put("parent_id", socket.assigns.topic.id)
+
+    case Peusapat.Commands.create_reply(params) do
+      {:ok, reply} ->
+        socket =
+          socket
+          |> put_flash(:info, "Reply created successfully")
+          |> push_navigate(to: ~p"/#{socket.assigns.community_slug}")
+
+        {:noreply, socket}
+
+      {:error, changeset} ->
+        socket =
+          socket
+          |> put_flash(:error, "Something went wrong")
+          |> assign(reply_form: to_form(changeset))
+
+        {:noreply, socket}
+    end
   end
 
   @impl true

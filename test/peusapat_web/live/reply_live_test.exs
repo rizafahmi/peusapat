@@ -4,13 +4,12 @@ defmodule PeusapatWeb.ReplyLiveTest do
   import Phoenix.LiveViewTest
   import Peusapat.TopicsFixtures
   import Peusapat.UsersFixtures
-  import Peusapat.CommunitiesFixtures
 
   @create_attrs %{text: "some reply"}
   # @update_attrs %{post: "some updated post"}
   # @invalid_attrs %{post: nil}
 
-  defp create_topic(community) do
+  defp create_topic(_community) do
     topic = topic_fixture() |> topic_preload()
     %{topic: topic}
   end
