@@ -25,13 +25,13 @@ defmodule PeusapatWeb.CommunityLive.Chat do
     # field :parent_id, :binary_id
     # belongs_to :user, Peusapat.Users.User
     # belongs_to :community, Peusapat.Communities.Community
-    community_id = Peusapat.Commands.get_community_by_slug(slug).id
+    community = Peusapat.Commands.get_community_by_slug(slug)
     user = socket.assigns.current_user || nil
 
     socket =
       socket
       |> assign(
-        reply_form: to_form(Topic.changeset(%Topic{}, %{community_id: community_id, user: user}))
+        reply_form: to_form(Topic.changeset(%Topic{}, %{community_id: community.id, user: user}))
       )
 
     {:noreply, socket}

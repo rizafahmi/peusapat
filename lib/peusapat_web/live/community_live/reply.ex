@@ -9,14 +9,17 @@ defmodule PeusapatWeb.CommunityLive.Reply do
     user = socket.assigns.current_user
     topic = Peusapat.Commands.get_topic_preload!(topic_id)
     replies = Peusapat.Commands.list_replies(topic_id)
+    community = Peusapat.Commands.get_community_by_slug(community_slug)
 
     socket =
       socket
       |> assign(topic: topic)
       |> assign(replies: replies)
       |> assign(user: user)
-      |> assign(community_slug: community_slug)
+      |> assign(community: community)
       |> assign(reply_form: to_form(Reply.changeset(%Reply{}, %{user: user})))
+      |> assign(title: "Diskusi Komunitas #{community.name}")
+      |> assign(community_link: ~p"/#{community.slug}")
 
     {:ok, socket}
   end
@@ -34,7 +37,7 @@ defmodule PeusapatWeb.CommunityLive.Reply do
           socket
           |> put_flash(:info, "Reply created successfully")
           |> push_navigate(
-            to: ~p"/#{socket.assigns.community_slug}/topics/#{socket.assigns.topic.id}"
+            to: ~p"/#{socket.assigns.community.slug}/topics/#{socket.assigns.topic.id}"
           )
 
         {:noreply, socket}
@@ -53,6 +56,13 @@ defmodule PeusapatWeb.CommunityLive.Reply do
   def render(assigns) do
     ~H"""
     <div>
+      <div class="flex justify-between items-center mb-6">
+        <article class="format">
+          <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
+            Pesan balasan
+          </h2>
+        </article>
+      </div>
       <article class="p-6 mb-3 text-base bg-white border-gray-200 dark:border-gray-700 dark:bg-gray-900 border-l-8">
         <footer class="flex justify-between items-center mb-2">
           <div class="flex items-center">
@@ -204,9 +214,9 @@ defmodule PeusapatWeb.CommunityLive.Reply do
           rows="5"
           placeholder="Reply..."
         />
-        <.button>Reply</.button>
+        <.button>Balas pesan</.button>
         <.link
-          navigate={~p"/#{@community_slug}"}
+          navigate={~p"/#{@community.slug}"}
           class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         >
           Back
