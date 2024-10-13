@@ -3,6 +3,7 @@ defmodule PeusapatWeb.CommunityLive.Reply do
 
   alias Peusapat.Topics.Reply
 
+  @impl true
   def mount(%{"community_slug" => community_slug, "topic_id" => topic_id}, _session, socket) do
     user = socket.assigns.current_user
     topic = Peusapat.Commands.get_topic_preload!(topic_id)
@@ -17,6 +18,13 @@ defmodule PeusapatWeb.CommunityLive.Reply do
     {:ok, socket}
   end
 
+  @impl true
+  def handle_event("submit", %{"reply" => reply_params}, socket) do
+    dbg(reply_params)
+    {:noreply, socket}
+  end
+
+  @impl true
   def render(assigns) do
     ~H"""
     <div>
@@ -85,7 +93,7 @@ defmodule PeusapatWeb.CommunityLive.Reply do
         </article>
       </article>
 
-      <.simple_form for={@reply_form} id="reply-form" phx-submit="reply">
+      <.simple_form for={@reply_form} id="reply-form" phx-submit="submit">
         <.input
           field={@reply_form[:text]}
           type="textarea"

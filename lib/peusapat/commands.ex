@@ -5,6 +5,7 @@ defmodule Peusapat.Commands do
 
   import Ecto.Query, warn: false
   alias Peusapat.Repo
+  alias Peusapat.Topics.Reply
 
   @doc """
   Returns the list of communities by user_id.
@@ -65,5 +66,22 @@ defmodule Peusapat.Commands do
     query = from t in Peusapat.Topics.Topic, where: t.id == ^id, preload: [:user]
 
     Repo.one(query)
+  end
+
+  @doc """
+  Creates a reply.
+  ## Examples
+
+      iex> create_reply(%{field: value})
+      {:ok, %Reply{}}
+
+      iex> create_reply(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_reply(attrs \\ %{}) do
+    %Reply{}
+    |> Reply.changeset(attrs)
+    |> Repo.insert()
   end
 end

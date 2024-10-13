@@ -14,7 +14,7 @@ defmodule Peusapat.Topics.Reply do
   @doc false
   def changeset(reply, attrs) do
     reply
-    |> cast(attrs, [:text])
-    |> validate_required([:text])
+    |> cast(attrs, [:text, :topic_id])
+    |> validate_required([:text, :topic_id])
   end
 end
