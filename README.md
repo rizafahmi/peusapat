@@ -54,7 +54,9 @@ It's not youtube community, it's multi directional forum discussion.
 - [x] Add replies module
 - [ ] ~~Breadcrumb navigation~~
 - [x] Update copy in landingpage
-- [ ] Change UI language to english
+- [x] Change UI language to english
+- [ ] Count replies
+- [ ] Social login
 - Like post
 - Pin message
 - Webmentions?
