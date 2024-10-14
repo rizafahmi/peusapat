@@ -63,7 +63,7 @@ defmodule Peusapat.Commands do
   end
 
   def get_topic_preload!(id) do
-    query = from t in Peusapat.Topics.Topic, where: t.id == ^id, preload: [:user]
+    query = from t in Peusapat.Topics.Topic, where: t.id == ^id, preload: [:user, :community]
 
     Repo.one(query)
   end

@@ -7,6 +7,7 @@ defmodule Peusapat.CommunitiesTest do
     alias Peusapat.Communities.Community
 
     import Peusapat.CommunitiesFixtures
+    import Peusapat.UsersFixtures
 
     @invalid_attrs %{description: nil, logo: nil, name: nil, slug: nil}
 
@@ -21,7 +22,15 @@ defmodule Peusapat.CommunitiesTest do
     end
 
     test "create_community/1 with valid data creates a community" do
-      valid_attrs = %{description: "some description", logo: "some logo", name: "some name", slug: "some slug"}
+      user = user_fixture()
+
+      valid_attrs = %{
+        description: "some description",
+        logo: "some logo",
+        name: "some name",
+        slug: "some slug",
+        user_id: user.id
+      }
 
       assert {:ok, %Community{} = community} = Communities.create_community(valid_attrs)
       assert community.description == "some description"
@@ -36,9 +45,17 @@ defmodule Peusapat.CommunitiesTest do
 
     test "update_community/2 with valid data updates the community" do
       community = community_fixture()
-      update_attrs = %{description: "some updated description", logo: "some updated logo", name: "some updated name", slug: "some updated slug"}
 
-      assert {:ok, %Community{} = community} = Communities.update_community(community, update_attrs)
+      update_attrs = %{
+        description: "some updated description",
+        logo: "some updated logo",
+        name: "some updated name",
+        slug: "some updated slug"
+      }
+
+      assert {:ok, %Community{} = community} =
+               Communities.update_community(community, update_attrs)
+
       assert community.description == "some updated description"
       assert community.logo == "some updated logo"
       assert community.name == "some updated name"

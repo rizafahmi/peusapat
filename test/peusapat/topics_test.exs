@@ -7,6 +7,8 @@ defmodule Peusapat.TopicsTest do
     alias Peusapat.Topics.Topic
 
     import Peusapat.TopicsFixtures
+    import Peusapat.CommunitiesFixtures
+    import Peusapat.UsersFixtures
 
     @invalid_attrs %{post: nil}
 
@@ -21,7 +23,9 @@ defmodule Peusapat.TopicsTest do
     end
 
     test "create_topic/1 with valid data creates a topic" do
-      valid_attrs = %{post: "some post"}
+      community = community_fixture()
+      user = user_fixture()
+      valid_attrs = %{post: "some post", community_id: community.id, user_id: user.id}
 
       assert {:ok, %Topic{} = topic} = Topics.create_topic(valid_attrs)
       assert topic.post == "some post"
