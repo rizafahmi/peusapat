@@ -55,6 +55,7 @@ It's not youtube community, it's multi directional forum discussion.
 - [ ] ~~Breadcrumb navigation~~
 - [x] Update copy in landingpage
 - [x] Change UI language to english
+- [x] Add border to reply textarea
 - [ ] Count replies
 - [ ] Social login
 - Like post

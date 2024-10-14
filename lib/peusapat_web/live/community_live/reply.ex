@@ -207,13 +207,15 @@ defmodule PeusapatWeb.CommunityLive.Reply do
         </div>
 
         <.simple_form for={@reply_form} id="reply-form" phx-submit="submit">
-          <.input
-            field={@reply_form[:text]}
-            type="textarea"
-            id="reply-text"
-            rows="5"
-            placeholder="Reply..."
-          />
+          <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <.input
+              field={@reply_form[:text]}
+              type="textarea"
+              id="reply-text"
+              rows="5"
+              placeholder="Reply..."
+            />
+          </div>
           <.button>Reply</.button>
           <.link
             navigate={~p"/#{@community.slug}"}
