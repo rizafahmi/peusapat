@@ -2,8 +2,7 @@ defmodule PeusapatWeb.PageController do
   use PeusapatWeb, :controller
 
   def home(conn, _params) do
-    # The home page is often custom made,
-    # so skip the default app layout.
-    render(conn, :home)
+    communities = Peusapat.Communities.list_communities()
+    render(conn, :home, communities: communities)
   end
 end

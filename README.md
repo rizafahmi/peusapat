@@ -46,11 +46,15 @@ It's not youtube community, it's multi directional forum discussion.
 - [x] Show community description
 - [x] As an audience, I can peek the post before I decide to join conversation
 - [x] Reply to post
-  - [x] Using modal
+  - ~~Using modal~~
   - ~~Or inline input text?~~
-- [x] Query post without parent id
-- [ ] Query post with parent id for each post
-- [ ] Add replies module
+  - [x] Redirect to reply page
+- [x] ~~Query post without parent id~~
+- [ ] ~~Query post with parent id for each post~~
+- [x] Add replies module
+- [ ] ~~Breadcrumb navigation~~
+- [x] Update copy in landingpage
+- [ ] Change UI language to english
 - Like post
 - Pin message
 - Webmentions?
