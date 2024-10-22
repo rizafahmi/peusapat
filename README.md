@@ -45,6 +45,8 @@ It's not youtube community, it's multi directional forum discussion.
 - [x] Show date and time of post
 - [x] Show community description
 - [x] As an audience, I can peek the post before I decide to join conversation
+- [ ] As an audience, I can create new community
+
 - [x] Reply to post
   - ~~Using modal~~
   - ~~Or inline input text?~~
@@ -58,6 +60,7 @@ It's not youtube community, it's multi directional forum discussion.
 - [x] Add border to reply textarea
 - [ ] Count replies
 - [ ] Social login
+- [x] Dynamic avatar for user
 - Like post
 - Pin message
 - Webmentions?
