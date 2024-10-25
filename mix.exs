@@ -64,7 +64,8 @@ defmodule Peusapat.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:earmark, "~> 1.4"},
-      {:mix_test_watch, "~> 1.0", only: [:dev, :test], runtime: false}
+      {:assent, "~> 0.2.10"},
+      {:mix_test_interactive, "~> 4.1", only: [:dev, :test], runtime: false}
     ]
   end
 
