@@ -27,6 +27,32 @@ defmodule Peusapat.Users do
   end
 
   @doc """
+  Gets a user by email or register.
+
+  ## Examples
+
+      iex> get_user_by_email_or_register("foo@example.com")
+      %User{}
+
+      iex> get_user_by_email_or_register("unknown@example.com")
+      %User{}
+
+  """
+  def get_user_by_email_or_register(email) when is_binary(email) do
+    case Repo.get_by(User, email: email) do
+      nil ->
+        nil
+        # User need a password
+        generated_password = :crypto.strong_rand_bytes(30) |> Base.encode64(padding: false)
+        {:ok, user} = register_user(%{email: email, password: generated_password})
+        user
+
+      user ->
+        user
+    end
+  end
+
+  @doc """
   Gets a user by email and password.
 
   ## Examples

@@ -505,4 +505,21 @@ defmodule Peusapat.UsersTest do
       refute inspect(%User{password: "123456"}) =~ "password: \"123456\""
     end
   end
+
+  describe "get_user_by_email_or_register/1" do
+    test "returns the user if the email exists" do
+      %{id: id} = user = user_fixture()
+      assert %User{id: ^id} = Users.get_user_by_email_or_register(user.email)
+    end
+
+    test "registers the user if the email does not exist" do
+      email = "new@email.com"
+      user = Users.get_user_by_email_or_register(email)
+
+      assert %User{} = user
+      assert user.email == email
+      assert is_binary(user.hashed_password)
+      assert user.id
+    end
+  end
 end

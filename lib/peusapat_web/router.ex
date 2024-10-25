@@ -2,7 +2,6 @@ defmodule PeusapatWeb.Router do
   use PeusapatWeb, :router
 
   import PeusapatWeb.UserAuth
-  import PeusapatWeb.GithubAuth
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -11,7 +10,7 @@ defmodule PeusapatWeb.Router do
     plug :put_root_layout, html: {PeusapatWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug :fetch_github_user
+    plug :fetch_current_user
   end
 
   pipeline :api do
@@ -104,7 +103,7 @@ defmodule PeusapatWeb.Router do
     delete "/users/log_out", UserSessionController, :delete
 
     live_session :current_user,
-      on_mount: [{PeusapatWeb.GithubAuth, :mount_current_user}] do
+      on_mount: [{PeusapatWeb.UserAuth, :mount_current_user}] do
       live "/users/confirm/:token", UserConfirmationLive, :edit
       live "/users/confirm", UserConfirmationInstructionsLive, :new
       live "/:community_slug", CommunityLive.Chat
