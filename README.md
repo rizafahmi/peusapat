@@ -60,6 +60,7 @@ It's not youtube community, it's multi directional forum discussion.
 - [x] Add border to reply textarea
 - [ ] Count replies
 - [ ] Social login
+  - [ ] Remove user settings page
 - [x] Dynamic avatar for user
 - Like post
 - Pin message
