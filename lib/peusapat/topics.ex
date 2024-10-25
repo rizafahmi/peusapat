@@ -6,7 +6,7 @@ defmodule Peusapat.Topics do
   import Ecto.Query, warn: false
   alias Peusapat.Repo
 
-  alias Peusapat.Topics.Topic
+  alias Peusapat.Topics.{Reply, Topic}
 
   @doc """
   Returns the list of topics.
@@ -100,5 +100,23 @@ defmodule Peusapat.Topics do
   """
   def change_topic(%Topic{} = topic, attrs \\ %{}) do
     Topic.changeset(topic, attrs)
+  end
+
+  @doc """
+  Creates a reply.
+
+  ## Examples
+
+      iex> create_reply(%{field: value})
+      {:ok, %Reply{}}
+
+      iex> create_reply(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_reply(attrs \\ %{}) do
+    %Reply{}
+    |> Reply.changeset(attrs)
+    |> Repo.insert()
   end
 end

@@ -3,14 +3,36 @@ defmodule PeusapatWeb.CommunityLiveTest do
 
   import Phoenix.LiveViewTest
   import Peusapat.CommunitiesFixtures
+  import Peusapat.UsersFixtures
+  import Phoenix.ConnTest
 
-  @create_attrs %{description: "some description", logo: "some logo", name: "some name", slug: "some slug"}
-  @update_attrs %{description: "some updated description", logo: "some updated logo", name: "some updated name", slug: "some updated slug"}
+  @create_attrs %{
+    description: "some description",
+    logo: "some logo",
+    name: "some name",
+    slug: "some slug"
+  }
+  @update_attrs %{
+    description: "some updated description",
+    logo: "some updated logo",
+    name: "some updated name",
+    slug: "some updated slug"
+  }
   @invalid_attrs %{description: nil, logo: nil, name: nil, slug: nil}
 
   defp create_community(_) do
     community = community_fixture()
     %{community: community}
+  end
+
+  defp login(%{conn: conn}) do
+    user = user_fixture()
+
+    conn =
+      conn
+      |> log_in_user(user)
+
+    %{conn: conn, user: user}
   end
 
   describe "Index" do
@@ -78,22 +100,24 @@ defmodule PeusapatWeb.CommunityLiveTest do
   end
 
   describe "Show" do
-    setup [:create_community]
+    setup [:create_community, :login]
 
     test "displays community", %{conn: conn, community: community} do
-      {:ok, _show_live, html} = live(conn, ~p"/communities/#{community}")
+      {:ok, _show_live, html} =
+        conn
+        |> live(~p"/admin/communities/#{community}")
 
       assert html =~ "Show Community"
       assert html =~ community.description
     end
 
-    test "updates community within modal", %{conn: conn, community: community} do
-      {:ok, show_live, _html} = live(conn, ~p"/communities/#{community}")
+    test "updates community within modal", %{conn: conn, community: community, user: user} do
+      {:ok, show_live, _html} = live(conn, ~p"/admin/communities/#{community}")
 
       assert show_live |> element("a", "Edit") |> render_click() =~
                "Edit Community"
 
-      assert_patch(show_live, ~p"/communities/#{community}/show/edit")
+      assert_patch(show_live, ~p"/admin/communities/#{community}/show/edit")
 
       assert show_live
              |> form("#community-form", community: @invalid_attrs)
@@ -103,7 +127,7 @@ defmodule PeusapatWeb.CommunityLiveTest do
              |> form("#community-form", community: @update_attrs)
              |> render_submit()
 
-      assert_patch(show_live, ~p"/communities/#{community}")
+      assert_patch(show_live, ~p"/admin/communities/#{community}")
 
       html = render(show_live)
       assert html =~ "Community updated successfully"
