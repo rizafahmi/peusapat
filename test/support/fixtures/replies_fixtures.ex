@@ -4,7 +4,7 @@ defmodule Peusapat.RepliesFixtures do
   entities via the `Peusapat.Replies` context.
   """
   import Ecto.Query, warn: false
-  alias Peusapat.Repo
+  # alias Peusapat.Repo
   import Peusapat.UsersFixtures
 
   @doc """
