@@ -7,7 +7,6 @@ defmodule PeusapatWeb.CommunityLive.Chat do
   @impl true
   def mount(%{"community_slug" => slug}, _session, socket) do
     topics = Peusapat.Commands.list_topics_by_community(slug)
-    dbg(topics)
     community = Peusapat.Commands.get_community_by_slug(slug)
     changeset = Topic.changeset(%Topic{}, %{})
 

@@ -119,4 +119,36 @@ defmodule Peusapat.Topics do
     |> Reply.changeset(attrs)
     |> Repo.insert()
   end
+
+  @doc """
+  Deletes a reply.
+
+  ## Examples
+
+      iex> delete_reply(reply)
+      {:ok, %Reply{}}
+
+      iex> delete_reply(reply)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_reply(%Reply{} = reply) do
+    Repo.delete(reply)
+  end
+
+  @doc """
+  Gets a single reply.
+
+  Raises `Ecto.NoResultsError` if the Reply does not exist.
+
+  ## Examples
+
+      iex> get_reply!(123)
+      %Reply{}
+
+      iex> get_reply!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_reply!(id), do: Repo.get!(Reply, id)
 end

@@ -62,7 +62,8 @@ It's not youtube community, it's multi directional forum discussion.
   - [x] Remove user settings page
 - [x] Dynamic avatar for user
 - [ ] Create new community
-- [x] Remove discussion/reply if community owner
+- [x] Remove topic if community owner
+- [x] Remove reply if community owner
 - [ ] SEO stuff
 - [ ] Count replies
 - Like post

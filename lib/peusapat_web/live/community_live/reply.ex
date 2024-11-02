@@ -160,6 +160,31 @@ defmodule PeusapatWeb.CommunityLive.Reply do
               -->
               </footer>
               <p class="text-gray-500 dark:text-gray-400"><%= reply.text %></p>
+              <%= if @community.user.id == @current_user.id do %>
+                <div class="flex items-center mt-4 space-x-4">
+                  <.link
+                    type="button"
+                    class="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 font-medium"
+                    navigate={~p"/#{@community.slug}/replies/#{reply.id}/delete"}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#F05252"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-trash"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                    </svg>
+                    Delete
+                  </.link>
+                </div>
+              <% end %>
             </article>
           <% end %>
         </div>

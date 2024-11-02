@@ -95,6 +95,7 @@ defmodule PeusapatWeb.Router do
 
       live "/:community_slug/topics/:topic_id", CommunityLive.Reply
       live "/:community_slug/topics/:topic_id/delete", CommunityLive.Delete
+      live "/:community_slug/replies/:reply_id/delete", ReplyLive.Delete
     end
   end
 
