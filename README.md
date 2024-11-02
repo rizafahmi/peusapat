@@ -58,10 +58,13 @@ It's not youtube community, it's multi directional forum discussion.
 - [x] Update copy in landingpage
 - [x] Change UI language to english
 - [x] Add border to reply textarea
-- [ ] Count replies
 - [x] Social login
   - [x] Remove user settings page
 - [x] Dynamic avatar for user
+- [ ] Create new community
+- [x] Remove discussion/reply if community owner
+- [ ] SEO stuff
+- [ ] Count replies
 - Like post
 - Pin message
 - Notification feature

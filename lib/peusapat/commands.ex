@@ -37,7 +37,8 @@ defmodule Peusapat.Commands do
   def get_community_by_slug(slug) do
     query =
       from c in Peusapat.Communities.Community,
-        where: c.slug == ^slug
+        where: c.slug == ^slug,
+        preload: [:user]
 
     Repo.one(query)
   end
