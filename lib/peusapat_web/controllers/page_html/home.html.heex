@@ -1,61 +1,52 @@
 <.flash_group flash={@flash} />
 <section class="bg-white dark:bg-gray-900">
-  <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
-    <h1 class="mb-4 text-3xl font-extrabold tracking-tight leading-none text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
-      Community Discussion, Simplified
-    </h1>
-    <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-      Reimagined online interaction, creating a space that's neither as rapid-fire as chat apps nor as drawn-out as traditional forums. With Peusapat, you can share ideas freely, and engage in meaningful discussions—all within a single, intuitive platform. Ideal for individuals and content creators worldwide who crave focused, efficient community engagement without all the complexity.
+<div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+<h1 class="mb-4 text-3xl font-extrabold tracking-tight leading-none text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
+Community Discussion, Simplified
+</h1>
+<p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+Using chat app for discussion is overloaded and overwhelming. Forum are too slow and synchronous. Charum is not a chat app, not a forum. </p>
+<p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400"><strong>It's in the between</strong>.
+
     </p>
-    <!-- div class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-      <a
-        href="#"
-        class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
-      >
-        Learn more
-        <svg
-          class="ml-2 -mr-1 w-5 h-5"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-            clip-rule="evenodd"
-          >
-          </path>
-        </svg>
-      </a>
-      <a
-        href="#"
-        class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
-      >
-        <svg
-          class="mr-2 -ml-1 w-5 h-5"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z">
-          </path>
-        </svg>
-        Watch video
-      </a>
-    </div -->
+<section class="bg-white dark:bg-gray-900">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+        <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12 mb-8">
+            <a href="#" class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-blue-400 mb-2">
+                Introducing
+            </a>
+            <h2 class="text-gray-900 dark:text-white text-3xl md:text-5xl font-extrabold mb-2">Charum</h2>
+<div class="text-left">
+<h3 class="text-gray-900 dark:text-white text-md md:text-xl font-bold my-2">What is it?</h3>
+<ul class="list-disc text-gray-500 dark:text-gray-400">
+<li>Not as sync as chat app</li>
+<li>Not as async as forum</li>
+<li>No channel, no thread. Just flat discussion</li>
+<li>One account for all community discussion</li>
+</ul>
+<h3 class="text-gray-900 dark:text-white text-md md:text-xl font-bold my-2">Who is it for?</h3>
+<ul class="list-disc text-gray-500 dark:text-gray-400">
+<li>Dev community</li>
+<li>Content creator</li>
+<li>Book club, and other club</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
     <section class="bg-white dark:bg-gray-900">
-      <div class="px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+      <div class="px-4 mx-auto max-w-screen-xl sm:py-8 lg:px-4">
         <div class="max-w-screen-md lg:mb-4 mx-auto">
           <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
             Communities you can join
           </h2>
           <p class="text-gray-500 sm:text-xl dark:text-gray-400">
             Join the communities that you're interested in, and start sharing your ideas with like-minded individuals.
-          </p>
-        </div>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <%= for community <- @communities do %>
+</p>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<%= for community <- @communities do %>
           <.link
             navigate={~p"/#{community.slug}"}
             class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"

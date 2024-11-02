@@ -58,7 +58,8 @@ defmodule PeusapatWeb.CommunityLive.Reply do
         <div class="flex flex-col mb-6">
           <article class="format">
             <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
-              Diskusi Komunitas <%= @community.name %>
+              Diskusi Komunitas
+              <.link navigate={~p"/#{@community.slug}"}><%= @community.name %></.link>
             </h2>
           </article>
         </div>

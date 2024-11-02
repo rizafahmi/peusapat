@@ -70,6 +70,11 @@ It's not youtube community, it's multi directional forum discussion.
 ## Non-functional Requirement
 
 - Use [Flowbite](https://flowbite.com/blocks/publisher/comments/)
+- Name:
+  - meupakat
+  - DialogNest
+  - Chorum
+  - Charum
 
 ## Model
 
