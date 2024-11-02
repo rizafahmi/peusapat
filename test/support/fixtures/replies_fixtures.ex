@@ -5,23 +5,18 @@ defmodule Peusapat.RepliesFixtures do
   """
   import Ecto.Query, warn: false
   # alias Peusapat.Repo
-  import Peusapat.UsersFixtures
 
   @doc """
   Generate a topic.
   """
 
-  def reply_fixture(attrs \\ %{}) do
-    user = user_fixture()
-
-    params =
-      attrs
-      |> Map.put(:user_id, user.id)
-
+  def reply_fixture(%{topic_id: topic_id, user_id: user_id} = attrs) do
     {:ok, reply} =
-      params
+      attrs
       |> Enum.into(%{
-        text: "some reply"
+        text: "some reply",
+        parent_id: topic_id,
+        user_id: user_id
       })
       |> Peusapat.Topics.create_reply()
 
