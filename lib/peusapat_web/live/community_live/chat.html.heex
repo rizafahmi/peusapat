@@ -95,7 +95,7 @@
             </svg>
             Reply
           </.link>
-          <%=  if @community.user.id == @current_user.id do %>
+          <%= if Map.get(assigns, :current_user) != nil and @community.user.id == @current_user.id do %>
           <.link
             type="button"
             class="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 font-medium"
