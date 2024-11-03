@@ -15,9 +15,17 @@ defmodule Peusapat.Communities.Community do
   end
 
   @doc false
-  def changeset(community, attrs) do
+  def changeset(community, attrs \\ %{}) do
     community
-    |> cast(attrs, [:name, :logo, :description, :slug, :user_id])
+    |> cast(attrs, [:name, :logo, :description, :user_id])
+    |> generate_slug()
     |> validate_required([:name, :slug, :user_id])
+  end
+
+  defp generate_slug(changeset) do
+    case get_change(changeset, :name) do
+      nil -> changeset
+      name -> put_change(changeset, :slug, String.downcase(name) |> String.replace(~r/\s+/, "-"))
+    end
   end
 end

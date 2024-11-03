@@ -11,8 +11,8 @@ defmodule Peusapat.MixProject do
       aliases: aliases(),
       deps: deps(),
       preferred_cli_env: [
-            "test.watch": :test
-          ]
+        "test.watch": :test
+      ]
     ]
   end
 
