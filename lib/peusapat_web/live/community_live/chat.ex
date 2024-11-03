@@ -51,7 +51,7 @@ defmodule PeusapatWeb.CommunityLive.Chat do
         socket =
           socket
           |> put_flash(:info, "Topic created successfully.")
-          |> push_navigate(to: ~p"/rizafahmi")
+          |> push_navigate(to: ~p"/#{socket.assigns.slug}")
 
         {:noreply, socket}
 
