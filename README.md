@@ -45,7 +45,7 @@ It's not youtube community, it's multi directional forum discussion.
 - [x] Show date and time of post
 - [x] Show community description
 - [x] As an audience, I can peek the post before I decide to join conversation
-- [ ] As an audience, I can create new community
+- [x] As an audience, I can create new community
 
 - [x] Reply to post
   - ~~Using modal~~
@@ -77,8 +77,9 @@ It's not youtube community, it's multi directional forum discussion.
 - Name:
   - meupakat
   - DialogNest
-  - Chorum
-  - Charum
+  - ~~Chorum~~
+  - ~~Charum~~
+  - Dischat.dev
 
 ## Model
 
